@@ -1,15 +1,27 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
+import { useFormStatus } from "react-dom";
+
 interface FormButtonProps {
-  loading: boolean;
   text: string;
 }
 
-export default function FormButton({ loading, text }: FormButtonProps) {
+export default function FormButton({  text }: FormButtonProps) {
+  const {pending} = useFormStatus();
+
+  useEffect(() => {
+    console.log(pending);
+  }, [pending]);
+  
+  const t = useTranslations("login");
   return (
     <button
-      disabled={loading}
+      disabled={pending}
       className="primary-btn h-10 disabled:bg-neutral-400  disabled:text-neutral-300 disabled:cursor-not-allowed"
     >
-      {loading ? "로딩 중" : text}
+      {pending ? t("loading") : text}
     </button>
   );
 }

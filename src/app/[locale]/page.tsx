@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Home() {
-  const t = useTranslations("Login");
+  const t = useTranslations("login");
   return (
     <div className="flex flex-col items-center justify-between min-h-screen p-6">
       <div className="my-auto flex flex-col items-center gap-2 *:font-medium">
