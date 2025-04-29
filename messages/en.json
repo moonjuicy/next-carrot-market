@@ -1,0 +1,10 @@
+{
+  "Login": {
+    "title": "Carrot Market",
+    "description": "Welcome to Carrot Market!",
+    "start": "Start",
+    "haveAccount": "Already have an account?",
+    "login": "Login"
+  }
+
+}
