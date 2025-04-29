@@ -10,7 +10,7 @@ export default function SMSLogin() {
         <h1 className="text-2xl">{t("title")}</h1>
         <h2 className="text-xl">{t("subtitle")}</h2>
       </div>
-      <form className="flex flex-col gap-3">
+      <form className="flex flex-col gap-4">
         <FormInput
           type="number"
           placeholder={t("phoneNumber")}
