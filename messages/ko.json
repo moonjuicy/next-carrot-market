@@ -1,10 +1,15 @@
 {
-  "Login": {
+  "login": {
     "title": "당근 마켓",
     "description": "당근 마켓에 어서오세요!",
     "start": "시작하기",
     "haveAccount": "이미 계정이 있나요?",
-    "login": "로그인"
+    "login": "로그인",
+    "logInWithEmailAndPassword": "이메일과 비밀번호로 로그인",
+    "email": "이메일",
+    "password": "비밀번호",
+    "hello": "안녕하세요!",
+    "loading": "로딩 중"
   },
   "createAccount": {
     "hello": "안녕하세요!",
@@ -15,7 +20,8 @@
     "signUpWithSMS": "SMS로 가입",
     "login": "로그인",
     "email": "이메일",
-    "password": "비밀번호"
+    "password": "비밀번호",
+    "confirmPassword": "비밀번호 확인"
   },
   "sms": {
     "title": "SMS 로그인",

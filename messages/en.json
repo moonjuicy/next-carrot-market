@@ -1,19 +1,27 @@
 {
-  "Login": {
+  "login": {
     "title": "Carrot Market",
     "description": "Welcome to Carrot Market!",
     "start": "Start",
     "haveAccount": "Already have an account?",
-    "login": "Login"
+    "login": "Login",
+    "logInWithEmailAndPassword": "Log in with email and password.",
+    "email": "Email",
+    "password": "Password",
+    "hello": "Hello!",
+    "loading": "Loading..."
   },
   "createAccount": {
     "hello": "Hello!",
     "fillInTheFormBelowToJoin": "Fill in the form below to join!",
     "username": "Username",
     "inputError": "Input error",
+    "createAccount": "Create account",
+    "signUpWithSMS": "Sign up with SMS",
     "login": "Login",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "confirmPassword": "Confirm password"
   },
   "sms": {
     "title": "SMS Log in",
