@@ -5,6 +5,25 @@
     "start": "Start",
     "haveAccount": "Already have an account?",
     "login": "Login"
+  },
+  "createAccount": {
+    "hello": "Hello!",
+    "fillInTheFormBelowToJoin": "Fill in the form below to join!",
+    "username": "Username",
+    "inputError": "Input error",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password"
+  },
+  "sms": {
+    "title": "SMS Log in",
+    "subtitle": "Verify your phone number.",
+    "phoneNumber": "Phone number",
+    "verificationCode": "Verification code",
+    "verify": "Verify"
+  },
+  "socialLogin": {
+    "continueWithGithub": "Continue with Github",
+    "continueWithSMS": "Continue with SMS"
   }
-
 }

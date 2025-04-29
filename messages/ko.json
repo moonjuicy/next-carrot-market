@@ -5,5 +5,27 @@
     "start": "시작하기",
     "haveAccount": "이미 계정이 있나요?",
     "login": "로그인"
+  },
+  "createAccount": {
+    "hello": "안녕하세요!",
+    "fillInTheFormBelowToJoin": "아래 폼을 채워서 가입하세요!",
+    "username": "사용자 이름",
+    "inputError": "입력 오류",
+    "createAccount": "계정 생성",
+    "signUpWithSMS": "SMS로 가입",
+    "login": "로그인",
+    "email": "이메일",
+    "password": "비밀번호"
+  },
+  "sms": {
+    "title": "SMS 로그인",
+    "subtitle": "휴대폰 번호를 확인해주세요.",
+    "phoneNumber": "휴대폰 번호",
+    "verificationCode": "인증 코드",
+    "verify": "인증"
+  },
+  "socialLogin": {
+    "continueWithGithub": "깃허브로 계속하기",
+    "continueWithSMS": "SMS로 계속하기"
   }
 }
