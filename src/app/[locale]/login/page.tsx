@@ -1,15 +1,16 @@
 "use client";
 
-import FormButton from "@/components/form-btn";
-import FormInput from "@/components/form-input";
+import FormButton from "@/components/button";
+import FormInput from "@/components/input";
 import SocialLogin from "@/components/social-login";
+import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 import { useTranslations } from "next-intl";
-import { useFormState } from "react-dom";
-import { handleForm } from "./actions";
+import { useActionState } from "react";
+import { logIn } from "./actions";
 
 export default function LogIn() {
   const t = useTranslations("login");
-  const [state, action] = useFormState(handleForm, null);
+  const [state, dispatch] = useActionState(logIn, null);
 
   return (
     <div className="flex flex-col gap-10 py-8 px-6">
@@ -17,20 +18,21 @@ export default function LogIn() {
         <h1 className="text-2xl">{t("hello")}</h1>
         <h2 className="text-xl">{t("logInWithEmailAndPassword")}</h2>
       </div>
-      <form action={action} className="flex flex-col gap-3">
+      <form action={dispatch} className="flex flex-col gap-3">
         <FormInput
           name="email"
           type="email"
           placeholder={t("email")}
           required
-          errors={[]}
+          errors={state?.fieldErrors.email}
         />
         <FormInput
           name="password"
           type="password"
           placeholder={t("password")}
           required
-          errors={state?.errors ?? []}
+          minLength={PASSWORD_MIN_LENGTH}
+          errors={state?.fieldErrors.password}
         />
         <FormButton text={t("login")} />
       </form>

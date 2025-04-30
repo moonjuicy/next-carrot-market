@@ -1,25 +1,21 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 import { useFormStatus } from "react-dom";
 
-interface FormButtonProps {
+interface ButtonProps {
   text: string;
+  type?: "submit" | "button";
 }
 
-export default function FormButton({  text }: FormButtonProps) {
-  const {pending} = useFormStatus();
-
-  useEffect(() => {
-    console.log(pending);
-  }, [pending]);
-  
-  const t = useTranslations("login");
+export default function Button({ text, type = "button" }: ButtonProps) {
+  const t = useTranslations("common");
+  const { pending } = useFormStatus();
   return (
     <button
       disabled={pending}
       className="primary-btn h-10 disabled:bg-neutral-400  disabled:text-neutral-300 disabled:cursor-not-allowed"
+      type={type}
     >
       {pending ? t("loading") : text}
     </button>

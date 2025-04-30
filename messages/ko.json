@@ -1,4 +1,8 @@
 {
+  "common": {
+    "hello": "안녕하세요!",
+    "loading": "로딩 중"
+  },
   "login": {
     "title": "당근 마켓",
     "description": "당근 마켓에 어서오세요!",
@@ -12,8 +16,8 @@
     "loading": "로딩 중"
   },
   "createAccount": {
-    "hello": "안녕하세요!",
-    "fillInTheFormBelowToJoin": "아래 폼을 채워서 가입하세요!",
+    "title": "안녕하세요!",
+    "description": "아래 폼을 채워서 가입하세요!",
     "username": "사용자 이름",
     "inputError": "입력 오류",
     "createAccount": "계정 생성",
@@ -21,14 +25,27 @@
     "login": "로그인",
     "email": "이메일",
     "password": "비밀번호",
-    "confirmPassword": "비밀번호 확인"
+    "confirmPassword": "비밀번호 확인",
+    "errors": {
+      "required": "이 필드는 필수 항목입니다",
+      "username": {
+        "min": "사용자 이름은 최소 5자 이상이어야 합니다",
+        "max": "사용자 이름은 최대 10자까지 가능합니다"
+      },
+      "email": "유효한 이메일 주소를 입력해주세요",
+      "password": "비밀번호는 최소 8자 이상이어야 합니다",
+      "passwordRegex": "비밀번호는 최소 하나의 대문자, 소문자, 숫자 및 특수 문자 #?!@$%^&*-가 포함되어야 합니다",
+      "confirmPassword": "비밀번호가 일치하지 않습니다"
+    }
   },
   "sms": {
     "title": "SMS 로그인",
     "subtitle": "휴대폰 번호를 확인해주세요.",
-    "phoneNumber": "휴대폰 번호",
-    "verificationCode": "인증 코드",
-    "verify": "인증"
+    "phone": "휴대폰 번호",
+    "token": "인증 코드",
+    "verify": "인증",
+    "send": "전송",
+    "wrongPhoneFormat": "잘못된 휴대폰 번호 형식입니다"
   },
   "socialLogin": {
     "continueWithGithub": "깃허브로 계속하기",
