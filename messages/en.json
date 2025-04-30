@@ -1,4 +1,8 @@
 {
+  "common": {
+    "hello": "Hello!",
+    "loading": "Loading..."
+  },
   "login": {
     "title": "Carrot Market",
     "description": "Welcome to Carrot Market!",
@@ -8,12 +12,11 @@
     "logInWithEmailAndPassword": "Log in with email and password.",
     "email": "Email",
     "password": "Password",
-    "hello": "Hello!",
-    "loading": "Loading..."
+    "hello": "Hello!"
   },
   "createAccount": {
-    "hello": "Hello!",
-    "fillInTheFormBelowToJoin": "Fill in the form below to join!",
+    "title": "Hello!",
+    "description": "Fill in the form below to join!",
     "username": "Username",
     "inputError": "Input error",
     "createAccount": "Create account",
@@ -21,14 +24,27 @@
     "login": "Login",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirm password"
+    "confirmPassword": "Confirm password",
+    "errors": {
+      "required": "This field is required",
+      "username": {
+        "min": "Username must be at least 5 characters long",
+        "max": "Username must be at most 10 characters long"
+      },
+      "email": "Please enter a valid email address",
+      "password": "Password must be at least 8 characters long",
+      "passwordRegex": "Passwords must contain at least one UPPERCASE, lowercase, number and special characters #?!@$%^&*-",
+      "confirmPassword": "Passwords do not match"
+    }
   },
   "sms": {
     "title": "SMS Log in",
     "subtitle": "Verify your phone number.",
-    "phoneNumber": "Phone number",
-    "verificationCode": "Verification code",
-    "verify": "Verify"
+    "phone": "Phone number",
+    "token": "Verification code",
+    "verify": "Verify",
+    "send": "Send",
+    "wrongPhoneFormat": "Wrong phone format"
   },
   "socialLogin": {
     "continueWithGithub": "Continue with Github",
