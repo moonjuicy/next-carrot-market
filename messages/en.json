@@ -29,9 +29,13 @@
       "required": "This field is required",
       "username": {
         "min": "Username must be at least 5 characters long",
-        "max": "Username must be at most 10 characters long"
+        "max": "Username must be at most 10 characters long",
+        "exists": "Username already exists"
       },
-      "email": "Please enter a valid email address",
+      "email": {
+        "format": "Please enter a valid email address",
+        "exists": "Email already exists"
+      },
       "password": "Password must be at least 8 characters long",
       "passwordRegex": "Passwords must contain at least one UPPERCASE, lowercase, number and special characters #?!@$%^&*-",
       "confirmPassword": "Passwords do not match"
