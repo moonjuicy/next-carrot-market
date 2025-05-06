@@ -1,3 +1,4 @@
+import "@/lib/db";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
