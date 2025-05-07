@@ -2,7 +2,10 @@
 import { PASSWORD_MIN_LENGTH, PASSWORD_REGEX } from "@/lib/constants";
 import db from "@/lib/db";
 import bcrypt from "bcryptjs";
+import { getIronSession } from "iron-session";
 import { getTranslations } from "next-intl/server";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const checkUniqueUsername = async (username: string) => {
@@ -85,6 +88,13 @@ export async function createAccount(prevState: any | null, formData: FormData) {
         id: true,
       },
     });
-    console.log(user);
+    const cookie = await getIronSession(await cookies(), {
+      cookieName: "delicious-karrot",
+      password: process.env.COOKIE_PASSWORD!,
+    });
+    //@ts-ignore
+    cookie.id = user.id;
+    await cookie.save();
+    redirect("/");
   }
 }
