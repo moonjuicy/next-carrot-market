@@ -1,6 +1,7 @@
 "use server";
 import { PASSWORD_MIN_LENGTH, PASSWORD_REGEX } from "@/lib/constants";
 import db from "@/lib/db";
+import bcrypt from "bcryptjs";
 import { getTranslations } from "next-intl/server";
 import { z } from "zod";
 
@@ -73,6 +74,17 @@ export async function createAccount(prevState: any | null, formData: FormData) {
   if (!result.success) {
     return result.error.flatten();
   } else {
-    console.log("result", result);
+    const hashedPassword = await bcrypt.hash(result.data.password, 12);
+    const user = await db.user.create({
+      data: {
+        username: result.data.username,
+        email: result.data.email,
+        password: hashedPassword,
+      },
+      select: {
+        id: true,
+      },
+    });
+    console.log(user);
   }
 }
