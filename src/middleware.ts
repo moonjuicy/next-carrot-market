@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import getSession from "./lib/session";
 
-const publicOnlyUrls = ["/", "/login", "/sms", "/create-account"];
+const publicOnlyUrls = ["/", "/login", "/sms", "/create-account", "/github/start", "/github/complete"];
 const supportedLocales = ["en", "ko"];
 
 function detectLocale(request: NextRequest) {
@@ -41,5 +41,12 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  matcher: [
+    // Match all pathnames except for
+    // - api routes
+    // - static files
+    // - _next internal routes
+    // - all files in the public folder
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
 };
