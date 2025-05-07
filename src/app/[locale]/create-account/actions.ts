@@ -7,29 +7,13 @@ import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-const checkUniqueUsername = async (username: string) => {
-  const user = await db.user.findUnique({
-    where: {
-      username,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return !Boolean(user);
-};
-
-const checkUniqueEmail = async (email: string) => {
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-  return Boolean(user) === false;
-};
+const checkPasswords = ({
+  password,
+  confirmPassword,
+}: {
+  password: string;
+  confirmPassword: string;
+}) => password === confirmPassword;
 
 export async function createAccount(prevState: any | null, formData: FormData) {
   const t = await getTranslations("createAccount.errors");
@@ -41,28 +25,55 @@ export async function createAccount(prevState: any | null, formData: FormData) {
         .min(5, t("username.min"))
         .max(10, t("username.max"))
         .toLowerCase()
-        .trim()
-        .refine(checkUniqueUsername, t("username.exists")),
-      email: z
-        .string()
-        .email(t("email.format"))
-        .toLowerCase()
-        .trim()
-        .refine(checkUniqueEmail, t("email.exists")),
+        .trim(),
+      email: z.string().email(t("email.format")).toLowerCase().trim(),
       password: z
         .string()
         .min(PASSWORD_MIN_LENGTH, t("password"))
         .regex(PASSWORD_REGEX, t("passwordRegex")),
-      confirmPassword: z.string().min(PASSWORD_MIN_LENGTH, t("password")),
+      confirmPassword: z.string().min(PASSWORD_MIN_LENGTH, t("password"))
     })
-    .superRefine(({ password, confirmPassword }, ctx) => {
-      if (password !== confirmPassword) {
+    .superRefine(async ({ username }, ctx) => {
+      const user = await db.user.findUnique({
+        where: {
+          username,
+        },
+        select: {
+          id: true,
+        },
+      });
+      if (user) {
         ctx.addIssue({
           code: "custom",
-          message: t("confirmPassword"),
-          path: ["confirmPassword"],
+          message: t("username.exists"),
+          path: ["username"],
+          fatal: true,
         });
+        return z.NEVER;
       }
+    })
+    .superRefine(async ({ email }, ctx) => {
+      const user = await db.user.findUnique({
+        where: {
+          email,
+        },
+        select: {
+          id: true,
+        },
+      });
+      if (user) {
+        ctx.addIssue({
+          code: "custom",
+          message: t("email.exists"),
+          path: ["email"],
+          fatal: true,
+        });
+        return z.NEVER;
+      }
+    })
+    .refine(checkPasswords, {
+      message: t("confirmPassword"),
+      path: ["confirmPassword"],
     });
 
   const data = {
