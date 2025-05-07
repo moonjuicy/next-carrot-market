@@ -12,7 +12,13 @@
     "logInWithEmailAndPassword": "Log in with email and password.",
     "email": "Email",
     "password": "Password",
-    "hello": "Hello!"
+    "hello": "Hello!",
+    "errors": {
+      "required": "This field is required",
+      "emailNotExists": "Email does not exist",
+      "passwordRegex": "Passwords must contain at least one UPPERCASE, lowercase, number and special characters #?!@$%^&*-",
+      "passwordNotValid": "Password is not valid"
+    }
   },
   "createAccount": {
     "title": "Hello!",

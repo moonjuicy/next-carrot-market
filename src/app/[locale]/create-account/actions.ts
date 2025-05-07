@@ -1,10 +1,9 @@
 "use server";
 import { PASSWORD_MIN_LENGTH, PASSWORD_REGEX } from "@/lib/constants";
 import db from "@/lib/db";
+import getSession from "@/lib/session";
 import bcrypt from "bcryptjs";
-import { getIronSession } from "iron-session";
 import { getTranslations } from "next-intl/server";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -88,13 +87,9 @@ export async function createAccount(prevState: any | null, formData: FormData) {
         id: true,
       },
     });
-    const cookie = await getIronSession(await cookies(), {
-      cookieName: "delicious-karrot",
-      password: process.env.COOKIE_PASSWORD!,
-    });
-    //@ts-ignore
-    cookie.id = user.id;
-    await cookie.save();
+    const session = await getSession();
+    session.id = user.id;
+    await session.save();
     redirect("/");
   }
 }
