@@ -1,7 +1,8 @@
+import { handleLogin } from "@/lib/auth";
 import db from "@/lib/db";
-import getSession from "@/lib/session";
-import { redirect } from "next/navigation";
+import { getGithubAccessToken, getGithubUser, getGithubUserEmails } from "@/lib/github";
 import { NextRequest } from "next/server";
+
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
   if (!code) {
@@ -9,50 +10,34 @@ export async function GET(request: NextRequest) {
       status: 400,
     });
   }
-  const accessTokenParams = new URLSearchParams({
-    client_id: process.env.GITHUB_CLIENT_ID!,
-    client_secret: process.env.GITHUB_CLIENT_SECRET!,
-    code,
-  }).toString();
-  const accessTokenURL = `https://github.com/login/oauth/access_token?${accessTokenParams}`;
-  const accessTokenResponse = await fetch(accessTokenURL, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  const { error, access_token } = await accessTokenResponse.json();
-  if (error) {
-    return new Response(null, {
-      status: 400,
-    });
-  }
-  const userProfileResponse = await fetch("https://api.github.com/user", {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-    cache: "no-cache",
-  });
-  const { id, login, avatar_url } = await userProfileResponse.json();
+  const accessToken = await getGithubAccessToken(code);
+  const { id, login, avatar_url } = await getGithubUser(accessToken);
+  const email = await getGithubUserEmails(accessToken);
+
   const user = await db.user.findUnique({
     where: {
-      githubId: id + "",
+      githubId: id.toString(),
     },
     select: {
       id: true,
     },
   });
+
   if (user) {
-    const session = await getSession();
-    session.id = user.id;
-    await session.save();
-    return redirect("/profile");
+    await handleLogin(user.id);
   }
+
+  const usernameExists = await db.user.findUnique({
+    where: {
+      username: login,
+    },
+  });
 
   const newUser = await db.user.create({
     data: {
-      githubId: id + "",
-      username: login,
+      email,
+      githubId: id.toString(),
+      username: usernameExists ? `${login}-gh` : login,
       avatar: avatar_url,
     },
     select: {
@@ -60,8 +45,5 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const session = await getSession();
-  session.id = newUser.id;
-  await session.save();
-  return redirect("/profile");
+  await handleLogin(newUser.id);
 }
