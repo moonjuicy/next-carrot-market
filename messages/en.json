@@ -61,5 +61,12 @@
   "socialLogin": {
     "continueWithGithub": "Continue with Github",
     "continueWithSMS": "Continue with SMS"
+  },
+  "tabs": {
+    "home": "Home",
+    "life": "Life",
+    "chat": "Chat",
+    "shopping": "Shopping",
+    "myKarrot": "My Karrot"
   }
 }
