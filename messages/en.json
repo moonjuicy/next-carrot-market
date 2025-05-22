@@ -54,7 +54,9 @@
     "token": "Verification code",
     "verify": "Verify",
     "send": "Send",
-    "wrongPhoneFormat": "Wrong phone format"
+    "wrongPhoneFormat": "Wrong phone format",
+    "message": "Your Karrot verification code is: {token}",
+    "tokenAlreadyExists": "Token already exists"
   },
   "socialLogin": {
     "continueWithGithub": "Continue with Github",

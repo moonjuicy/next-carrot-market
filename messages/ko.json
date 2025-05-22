@@ -55,7 +55,9 @@
     "token": "인증 코드",
     "verify": "인증",
     "send": "전송",
-    "wrongPhoneFormat": "잘못된 휴대폰 번호 형식입니다"
+    "wrongPhoneFormat": "잘못된 휴대폰 번호 형식입니다",
+    "message": "당근 마켓 인증 코드는: {token}입니다",
+    "tokenAlreadyExists": "이미 존재하는 인증 코드입니다"
   },
   "socialLogin": {
     "continueWithGithub": "깃허브로 계속하기",
